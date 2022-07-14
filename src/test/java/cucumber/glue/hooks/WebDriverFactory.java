@@ -52,28 +52,22 @@ public class WebDriverFactory {
         ChromeOptions chromeArguments = new ChromeOptions();
         chromeArguments.addArguments("--no-sandbox");
         chromeArguments.addArguments("--disable-dev-shm-usage");
-        chromeArguments.setHeadless(true);
+        //chromeArguments.setHeadless(true);
         chromeArguments.addArguments("--remote-debugging-port=9222");
 
         switch(currentWebDriver) {
-            case ("chrome"):
-                WebDriverManager.chromedriver().cachePath("./Driver").avoidOutputTree().setup();
-
-                webDriver = new ChromeDriver(chromeArguments);
-                break;
             case ("firefox"):
-                WebDriverManager.firefoxdriver().setup();
+                WebDriverManager.firefoxdriver().cachePath("./Drivers").avoidOutputTree().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.setCapability("marionette", true);
                 webDriver = new FirefoxDriver(firefoxOptions);
                 break;
             case ("edge"):
-                WebDriverManager.edgedriver().setup();
+                WebDriverManager.edgedriver().cachePath("./Drivers").avoidOutputTree().setup();
                 webDriver = new EdgeDriver();
                 break;
             default:
-                //WebDriverManager.chromedriver().cachePath("./Driver").avoidOutputTree().setup();
-                System.setProperty("webdriver.chrome.driver", "Driver/chromedriver");
+                WebDriverManager.chromedriver().cachePath("./Drivers").avoidOutputTree().setup();
                 webDriver = new ChromeDriver(chromeArguments);
                 break;
         }

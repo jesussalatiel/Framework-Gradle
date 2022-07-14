@@ -1,0 +1,27 @@
+# Docker Compose Version
+version: '3.3'
+services:
+  jenkins:
+    build: .
+    # Expose 49001 to 8080 using localhost to see the Jenkins Interface
+    ports:
+      - "2424:8080"
+    # Include Directory to Jenkins
+    volumes:
+      - ./jenkins:/var/jenkins_home
+  # Container for Selenium Grid
+  selenium-hub:
+    image: selenium/hub:3.6.0
+    # Expose port to test the selenium hub configuration
+    ports:
+      - "2425:4444"
+  # Chrome Container
+  chrome:
+    image: selenium/node-chrome:3.6.0
+    # Linked HUB to Chrome Container
+    links:
+      - selenium-hub:hub
+    # Environment variable
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444

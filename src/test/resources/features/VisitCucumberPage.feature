@@ -1,5 +1,6 @@
 Feature: As a user i want to visit cucumber pages
 
+  @Critical
   Scenario Outline: Visit cucumber pages
     Given I go to <home> page
     Then I should be on <home> page
