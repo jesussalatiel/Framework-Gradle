@@ -1,3 +1,6 @@
 Drivers/
 gradle/
 target/
+.idea/
+.gradle/
+gradle/wrapper/
