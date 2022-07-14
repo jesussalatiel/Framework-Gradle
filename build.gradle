@@ -1,9 +1,11 @@
 plugins {
     id 'java'
     id "com.avast.gradle.docker-compose" version "0.16.8"
+    id "com.epam.healenium.hlm-report" version "1.1.2"
 }
 
 apply plugin: "com.avast.gradle.docker-compose"
+apply plugin: "com.epam.healenium.hlm-report"
 
 group 'Solution'
 version '1.0-SNAPSHOT'
@@ -24,18 +26,6 @@ dockerCompose {
     }
     useComposeFiles = ['integration/docker-compose.yml']//,
     captureContainersOutput = true // if true, prints output of all containers to Gradle output - very useful for debugging; default is false
-
-}
-
-@CacheableRule
-class JmeterRule implements ComponentMetadataRule {
-    void execute(ComponentMetadataContext context) {
-        context.details.allVariants {
-            withDependencies {
-                removeAll { it.group == "org.apache.jmeter" && it.name == "bom" }
-            }
-        }
-    }
 }
 
 dependencies {
@@ -64,21 +54,16 @@ dependencies {
     /*End Selenium Web*/
 
 
-    /*Appium*/
+    /*Start Appium*/
     implementation 'io.appium:java-client:8.1.1'
-    /**/
+    /*End Appium*/
 
-    testImplementation 'us.abstracta.jmeter:jmeter-java-dsl:0.62.1'
-    components {
-        withModule("org.apache.jmeter:ApacheJMeter_core", JmeterRule)
-        withModule("org.apache.jmeter:ApacheJMeter_java", JmeterRule)
-        withModule("org.apache.jmeter:ApacheJMeter", JmeterRule)
-        withModule("org.apache.jmeter:ApacheJMeter_http", JmeterRule)
-        withModule("org.apache.jmeter:ApacheJMeter_functions", JmeterRule)
-        withModule("org.apache.jmeter:ApacheJMeter_components", JmeterRule)
-        withModule("org.apache.jmeter:ApacheJMeter_config", JmeterRule)
-        withModule("org.apache.jmeter:jorphan", JmeterRule)
-    }
+
+    /*Start Rest Assured*/
+    testImplementation 'io.rest-assured:rest-assured:5.1.1'
+    testImplementation 'io.rest-assured:json-path:5.1.1'
+    testImplementation 'io.rest-assured:json-schema-validator:5.1.1'
+    /*End Rest Assured*/
 }
 
 task deleteCucumberReports(type: Delete) {

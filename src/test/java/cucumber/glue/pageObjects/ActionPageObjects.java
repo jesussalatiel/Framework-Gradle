@@ -3,15 +3,15 @@ package cucumber.glue.pageObjects;
 import cucumber.glue.customAnnotations.PageObject;
 import cucumber.glue.hooks.WebDriverFactory;
 import cucumber.glue.pageObjects.initPageFactory.BasePage;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import us.abstracta.jmeter.javadsl.core.TestPlanStats;
+import org.springframework.beans.factory.annotation.Value;
 
-import java.time.Duration;
-import java.time.Instant;
+import static io.restassured.RestAssured.given;
 
-import static us.abstracta.jmeter.javadsl.JmeterDsl.*;
 
 @PageObject
 public class ActionPageObjects extends BasePage {
@@ -25,15 +25,12 @@ public class ActionPageObjects extends BasePage {
     private WebElement menuJam;
 
     public void clickJamMenu() {
+        RestAssured.baseURI = "https://pokeapi.co/api/v2/";
+
+        Response response = given().get("pokemon/ditto");
+        System.out.println("-------------------->"+response.asString());
+
         //menuJam.click();
-        /*TestPlanStats stats = testPlan(
-                threadGroup(2, 10,
-                        httpSampler("http://my.service")
-                ),
-                //this is just to log details of each request stats
-                jtlWriter("test" + Instant.now().toString().replace(":", "-") + ".jtl")
-        ).run();*/
-        //assertThat(stats.overall().sampleTimePercentile99()).isLessThan(Duration.ofSeconds(5));
     }
 
 }

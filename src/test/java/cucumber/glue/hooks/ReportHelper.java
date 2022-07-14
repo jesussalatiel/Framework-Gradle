@@ -2,7 +2,7 @@ package cucumber.glue.hooks;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.AfterStep;
-import org.junit.jupiter.api.AfterAll;
+import cucumber.glue.utils.TakesScreenshots;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ReportHelper {

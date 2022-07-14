@@ -11,3 +11,12 @@ Feature: As a user i want to visit cucumber pages
     Examples:
       |home                 |jam                     |training                     |
       |https://cucumber.io/ |https://cucumber.io/jam |https://cucumber.io/training |
+
+
+    @Integration
+
+    Scenario: testing the get call for User Details
+
+      Given url 'https://reqres.in/api/users/2'
+      When method GET
+      Then status 200

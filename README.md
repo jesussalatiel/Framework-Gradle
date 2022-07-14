@@ -9,7 +9,6 @@
 ### Prerequisites
 * [Gradle for Windows](https://gradle.org/next-steps/?version=7.4.2&format=bin)
 * Cucumber for Java plugin for IntelliJ
-* [Healenium](https://github.com/healenium/healenium-backend)
 * [Docker/Compose](https://docs.docker.com/desktop/install/windows-install/)
 * [Java 11](https://www.oracle.com/mx/java/technologies/javase/jdk11-archive-downloads.html)
 
@@ -134,3 +133,10 @@ To run report in browser, open 'target\html\index.html' file and choose browser.
 docker exec -it <container_name> bash
 cat /var/jenkins_home/secrets/initialAdminPassword
 ```
+##### Don´t add: The Bean in WebDriverFactory remove it after the execution 
+```
+ if(factory.getDriver()!=null)
+            factory.getDriver().quit();
+```
+##### When activate Healenium is possible the test failed
+This is because Healenium Backend Container is not started
