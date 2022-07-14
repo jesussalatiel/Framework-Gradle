@@ -57,17 +57,17 @@ public class WebDriverFactory {
 
         switch(currentWebDriver) {
             case ("firefox"):
-                WebDriverManager.firefoxdriver().cachePath("./Drivers").avoidOutputTree().setup();
+                WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.setCapability("marionette", true);
                 webDriver = new FirefoxDriver(firefoxOptions);
                 break;
             case ("edge"):
-                WebDriverManager.edgedriver().cachePath("./Drivers").avoidOutputTree().setup();
+                WebDriverManager.edgedriver().setup();
                 webDriver = new EdgeDriver();
                 break;
             default:
-                WebDriverManager.chromedriver().cachePath("./Drivers").avoidOutputTree().setup();
+                WebDriverManager.chromedriver().setup();
                 webDriver = new ChromeDriver(chromeArguments);
                 break;
         }

@@ -19,6 +19,6 @@ public class ActionPageObjects extends BasePage {
     private WebElement menuJam;
 
     public void clickJamMenu() {
-        menuJam.click();
+        //menuJam.click();
     }
 }
