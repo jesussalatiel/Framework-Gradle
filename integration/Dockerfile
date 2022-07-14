@@ -1,5 +1,6 @@
-#Build Jenkins with BlueOcean
-FROM jenkins/jenkins:2.346.2-jdk11
+#Build Jenkins with BlueOcean and Gradle
+#FROM jenkins/jenkins:2.346.2-jdk11
+FROM jenkins/jenkins:lts
 
 USER root
 
@@ -22,6 +23,7 @@ RUN xvfb :0 -screen 0 1024x768x24 &> xvfb.log &
 
 # Preinstall needed plugins
 RUN jenkins-plugin-cli --plugins "blueocean:1.25.5 docker-workflow:1.28"
+RUN jenkins-plugin-cli --plugins "gradle:1.39.4"
 #RUN /usr/local/bin/install-plugins.sh blueocean
 
 USER jenkins

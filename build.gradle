@@ -1,6 +1,9 @@
 plugins {
     id 'java'
+    id "com.avast.gradle.docker-compose" version "0.16.8"
 }
+
+apply plugin: "com.avast.gradle.docker-compose"
 
 group 'Solution'
 version '1.0-SNAPSHOT'
@@ -13,6 +16,10 @@ repositories {
 task upgradeGradle(type: Wrapper) {
     gradleVersion = '7.4.2'
     distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-bin.zip"
+}
+
+dockerCompose {
+    useComposeFiles = ["docker-compose.yml"]
 }
 
 @CacheableRule
@@ -96,3 +103,4 @@ task runTests (type: Test){
     dependsOn(deleteCucumberReports)
     systemProperty "browser", System.getProperty("browser")
 }
+
