@@ -1,17 +1,33 @@
 pipeline {
   agent any
   stages {
-    stage('Test') {
+    stage('Functional') {
       steps {
-        sh './gradlew clean test'
+        sh 'gradle clean test'
       }
     }
 
+    stage('Integration') {
+      steps {
+        echo 'Integration Test'
+      }
+    }
+
+    stage('Mobile') {
+      steps {
+        echo 'Integration Test'
+      }
+    }
+
+    stage('Performance') {
+      steps {
+        echo 'Performance Test'
+      }
+     }
     stage('Clean up') {
       steps {
         deleteDir()
       }
     }
-
   }
 }
