@@ -1,19 +1,17 @@
 # Solution: Cucumber-Java-Page-Factory Template
 #### with Cucumber-java, Cucumber Spring, custom annotation @PageObject, lambda expression ready, Selenium PageFactory and webdriver manager (Selenium WebDriver) for:
-* ##### chrome
-* ##### firefox
-* ##### chrome headless
+* ##### Chrome
+* ##### Firefox
+* ##### Android
+* ##### RestAssured
 
 
 ### Prerequisites
-* gradle
+* [Gradle for Windows](https://gradle.org/next-steps/?version=7.4.2&format=bin)
 * Cucumber for Java plugin for IntelliJ
-* Gherkin for IntelliJ
-* chromedriver.exe (put it into project root)- chrome is set as default browser
-* geckodriver.exe (put it into project root)- is needed for newer FF versions
-* IEDriverServer.exe (put it into project root)
 * [Healenium](https://github.com/healenium/healenium-backend)
-* Docker/Compose
+* [Docker/Compose](https://docs.docker.com/desktop/install/windows-install/)
+* [Java 11](https://www.oracle.com/mx/java/technologies/javase/jdk11-archive-downloads.html)
 
 ### Initial
 * clone repository
@@ -122,3 +120,11 @@ To run report in browser, open 'target\html\index.html' file and choose browser.
 ### Gradle custom tasks
 * runTests
 * deleteCucumberReports
+
+### Common Issues
+
+##### Password Jenkins
+```
+docker exec -it <container_name> bash
+cat /var/jenkins_home/secrets/initialAdminPassword
+```

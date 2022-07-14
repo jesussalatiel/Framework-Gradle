@@ -4,3 +4,4 @@ target/
 .idea/
 .gradle/
 gradle/wrapper/
+integration/jenkins/
