@@ -15,6 +15,17 @@ task upgradeGradle(type: Wrapper) {
     distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-bin.zip"
 }
 
+@CacheableRule
+class JmeterRule implements ComponentMetadataRule {
+    void execute(ComponentMetadataContext context) {
+        context.details.allVariants {
+            withDependencies {
+                removeAll { it.group == "org.apache.jmeter" && it.name == "bom" }
+            }
+        }
+    }
+}
+
 dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.12'
 
@@ -45,7 +56,17 @@ dependencies {
     implementation 'io.appium:java-client:8.1.1'
     /**/
 
-
+    testImplementation 'us.abstracta.jmeter:jmeter-java-dsl:0.62.1'
+    components {
+        withModule("org.apache.jmeter:ApacheJMeter_core", JmeterRule)
+        withModule("org.apache.jmeter:ApacheJMeter_java", JmeterRule)
+        withModule("org.apache.jmeter:ApacheJMeter", JmeterRule)
+        withModule("org.apache.jmeter:ApacheJMeter_http", JmeterRule)
+        withModule("org.apache.jmeter:ApacheJMeter_functions", JmeterRule)
+        withModule("org.apache.jmeter:ApacheJMeter_components", JmeterRule)
+        withModule("org.apache.jmeter:ApacheJMeter_config", JmeterRule)
+        withModule("org.apache.jmeter:jorphan", JmeterRule)
+    }
 }
 
 task deleteCucumberReports(type: Delete) {
