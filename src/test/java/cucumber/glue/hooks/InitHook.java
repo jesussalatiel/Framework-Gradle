@@ -1,7 +1,7 @@
 package cucumber.glue.hooks;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+import org.junit.Before;
+import org.junit.jupiter.api.AfterAll;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class InitHook {
@@ -15,7 +15,7 @@ public class InitHook {
 
     }
 
-    @After
+    @AfterAll
     public void tearDown(){
         if(factory.getDriver()!=null)
             factory.getDriver().quit();
