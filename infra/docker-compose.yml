@@ -3,7 +3,7 @@ version: "3.3"
 services:
 
   db:
-    image: hexly/postgres-alpine  
+    image: postgres:11-alpine
     ports:
       - "5432:5432"
     volumes:
@@ -12,12 +12,12 @@ services:
     environment:
       - POSTGRES_DB=healenium
       - POSTGRES_USER=healenium_user
-      - POSTGRES_PASSWORD=jesus
+      - POSTGRES_PASSWORD=YDk2nmNs4s9aCP6K
     networks:
       - healenium
 
   healenium:
-    image: healenium/hlm-backend:3.2.3
+    image: healenium/hlm-backend:3.2.2
     ports:
       - "7878:7878"
     links:
@@ -27,8 +27,8 @@ services:
       - SPRING_CONTAINER_NAME=healenium
       - SPRING_POSTGRES_DB=healenium
       - SPRING_POSTGRES_USER=healenium_user
-      - SPRING_POSTGRES_PASSWORD=jesus
-      - SPRING_POSTGRES_URL=jdbc:postgresql://localhost:5432/healenium?currentSchema=healenium
+      - SPRING_POSTGRES_PASSWORD=YDk2nmNs4s9aCP6K
+      - SPRING_POSTGRES_URL=jdbc:postgresql://db:5432/healenium?currentSchema=healenium
     networks:
       - healenium
 

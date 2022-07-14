@@ -113,6 +113,12 @@ run CucumberRunner class
 or run .feature file / directory with .feature files / scenario in .feature file
 ```
 
+###### To run [Docker Compose Plugin](https://github.com/avast/gradle-docker-compose-plugin)
+```
+'./gradlew composeDown'
+'./gradlew composeUp'
+```
+
 ### Reports and screenshots
 Reports are placed in 'target' directory, including screenshots of failed scenarios.
 To run report in browser, open 'target\html\index.html' file and choose browser.

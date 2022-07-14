@@ -19,7 +19,12 @@ task upgradeGradle(type: Wrapper) {
 }
 
 dockerCompose {
-    useComposeFiles = ["docker-compose.yml"]
+    myNested{
+        useComposeFiles = ['infra/docker-compose.yml']
+    }
+    useComposeFiles = ['integration/docker-compose.yml']//,
+    captureContainersOutput = true // if true, prints output of all containers to Gradle output - very useful for debugging; default is false
+
 }
 
 @CacheableRule
